@@ -1,10 +1,10 @@
 import { useState } from 'react'
 
-
+import Main from './components/main/hero'
 function App() {
   return (
     <>
-    <h1>i have a big dick</h1>
+    <Main /> 
     </>
   )
 }
