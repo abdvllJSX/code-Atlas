@@ -8,6 +8,15 @@ export default function Main() {
     const [darkmode, setDarkmode] = useState(null);
     const [button, setButton] = useState(false);
     const [loading, setLoading] = useState(false)
+    
+    useEffect(() => {
+        if (darkmode) {
+            document.body.classList.add('dark-mode');
+        } else {
+            document.body.classList.remove('dark-mode');
+        }
+    }, [darkmode]);
+
 
     const toggleButton = () => {
         setButton(prevSetButton => !prevSetButton)
