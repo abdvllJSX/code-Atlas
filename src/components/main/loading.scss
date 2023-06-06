@@ -1,0 +1,23 @@
+@import "../../styles/main.scss";
+
+.containers {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    width: 100%;
+    height: 70px;
+    overflow: hidden;
+
+    .ball {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background-color: black;
+    }
+
+    .darkball {
+        @extend .ball;
+        background-color: white;
+    }
+}

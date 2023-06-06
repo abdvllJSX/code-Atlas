@@ -1,12 +1,11 @@
-@import '../../styles/main.scss';
+@import "../../styles/main.scss";
 
 body {
     background-color: #ffffff;
-    font-family: 'Mulish', sans-serif;
+    font-family: "Mulish", sans-serif;
 
     .main-light {
         width: 100%;
-        height: 100%;
         padding-bottom: 100px;
         background-color: #ffffff;
         transition: background-color 0.5s ease-in-out;
@@ -15,7 +14,8 @@ body {
         top: 0;
         left: 0;
     }
-    .container{
+
+    .container {
         bottom: 0;
         top: 0;
         padding-top: 150px;
@@ -23,19 +23,21 @@ body {
         position: absolute;
         width: 100%;
         height: 100%;
-      }
-    .overlay{
+    }
+
+    .overlay {
         @extend .main-light;
-        position: absolute;
+        position: fixed;
         background-color: #000000;
         z-index: 5;
         bottom: 0;
-        opacity: 0.5
+        opacity: 0.5;
     }
+
     .main-dark {
         @extend .main-light;
+        position: static;
         background-color: #000000;
-
     }
 
     .input {
@@ -48,9 +50,17 @@ body {
         left: 20%;
         right: 20%;
         border-radius: 25px;
-        background-color: #F9F9F9;
+        background-color: #f9f9f9;
         margin: 80px 0;
-
+        @include mobile {
+            width: 80%;
+            margin-top: 50px;
+            margin-bottom: 50px;
+            margin-left: 10%;
+            margin-right: 10%;
+            right: 0;
+            left: 0;
+        }
         .svg {
             height: 100%;
             margin: 20px;
@@ -84,7 +94,7 @@ body {
         justify-content: space-between;
         background-color: white;
         top: 0;
-        box-shadow: 5px 0 20px 2px rgba(0, 0, 0, .1);
+        box-shadow: 5px 0 20px 2px rgba(0, 0, 0, 0.1);
         padding: 20px;
 
         .wrapper {
@@ -103,25 +113,27 @@ body {
             height: 30px;
             display: flex;
             align-items: center;
-            background-color: #F4F4F5;
+            background-color: #f4f4f5;
 
             .toggeler {
                 width: 20px;
                 height: 20px;
                 margin: 0 5px;
                 background-color: #ffffff;
-                transition: transform .34s cubic-bezier(.24, 1, .32, 1), visibility .36s;
+                transition: transform 0.34s cubic-bezier(0.24, 1, 0.32, 1),
+                    visibility 0.36s;
                 border-radius: 100%;
             }
         }
 
         .darkmode {
             @extend .lightmode;
-            background-color: #48D38A;
+            background-color: #48d38a;
 
             .toggeler {
                 @extend .toggeler;
-                transition: transform .34s cubic-bezier(.24, 1, .32, 1), visibility .36s;
+                transition: transform 0.34s cubic-bezier(0.24, 1, 0.32, 1),
+                    visibility 0.36s;
                 transform: translateX(20px);
             }
         }
@@ -132,7 +144,7 @@ body {
         background-color: black;
 
         h4 {
-            color: #ffffff
+            color: #ffffff;
         }
 
         .wrapper {
@@ -149,6 +161,9 @@ body {
         text-transform: capitalize;
         font-size: 2rem;
         text-align: center;
+        @include mobile {
+            font-size: 1.3rem;
+        }
     }
 }
 
@@ -158,78 +173,194 @@ body {
     padding-left: 14%;
     flex-wrap: wrap;
     margin: 0 auto;
-    .bank {
-        display: flex;
-        // position: relative;
-        align-items: center;
-        justify-content: space-between;
+    @include mobile {
+        padding-left: 10%;
+        padding-right: 10%;
+    }
+    .not-found-container{
         width: 100%;
-        color: black;
-        // position: relative;
-        // border-radius: 10px;
-        padding: 10px 20px;
-        margin-bottom: 20px;
+        height: 100px;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        h3{
+            width: 40ch;
+            text-transform: capitalize;
+            text-align: center;
+        }
+    }
+    .container-2 {
+        width: 100%;
+        max-height: 520px;
+        // transition: all 0.5s ease-in-out;
+        overflow-y: hidden;
 
-       
-
-        .right {
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
+        .bank {
             display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            color: black;
+            background-color: #f9f9f9;
+            transition: all 0.4s ease-in;
+            padding: 10px 20px;
+            margin-bottom: 20px;
 
-            p {
-                font-size: 10px;
-                font-weight: 600;
+            &:hover {
+                background-color: #e6f1ff;
+            }
+
+            &:hover>svg {
+                transform: translateX(8px);
+            }
+
+            &:hover>.right>p {
+                font-size: 11px;
+            }
+
+
+            svg {
+                transition: all 0.3s ease-in;
+            }
+
+            .right {
+                align-items: center;
+                justify-content: center;
+                gap: 10px;
+                display: flex;
+
+                p {
+                    font-size: 10px;
+                    transition: all 0.3s ease-in;
+                    font-weight: 600;
+                }
+            }
+
+            img {
+                height: 35px;
+                transition: all 0.3s ease-in;
+                width: 35px;
             }
         }
+    }
 
-        img {
-            height: 35px;
-            width: 35px;
+    .contain-open {
+        @extend .container-2;
+        max-height: 100%;
+    }
+
+    .button-container {
+        width: 100%;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        border-radius: 3px;
+        justify-content: center;
+
+        .toggle-container-light{
+            padding: 10px;
+            border: none;
+            font-family: "Mulish", sans-serif;
+            font-weight: 600;
+            text-transform: capitalize;
+            color: inherit;
+            transition: all 0.4s ease-in;
+            background-color: #f4f4f5;
         }
 
+        .toggle-container-dark{
+            @extend .toggle-container-light;
+            background-color: #1A1A1C;
+            color: white;
+        }
     }
 }
+
 body.disable-scroll {
     overflow: hidden;
-  }
-  
-  
-  .bank-info {
+}
+
+.bank-info {
     padding: 30px;
-    width: 400px;  
     left: 25%;
     right: 15%;
-    bottom: 25%;
+    bottom: 20%;
+    width: 400px;
+    opacity: 0;
     left: 25%;
     z-index: 50;
-    opacity: 6;
+    opacity: 0;
     background-color: white;
-    position:fixed;
+    position: fixed;
 
-    .nav{
+    .nav {
         display: flex;
         align-items: center;
         width: 100%;
+        gap: 20%;
         height: 30px;
         margin-bottom: 20px;
-        h4 {
-            text-align: center; 
-        }
     }
 
     .top {
         width: 100%;
-        background-color: #F4F4F5;
+        background-color: #f4f4f5;
         display: flex;
         padding: 10px;
         align-items: center;
         column-gap: 30px;
 
         img {
-            width: 70px;
-            height: 70px;
+            width: 50px;
+            height: 45px;
+        }
+    }
+
+    main {
+        margin-top: 30px;
+
+        span {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 5px;
+        }
+    }
+}
+
+.dark-bank-info {
+    padding: 30px;
+    width: 400px;
+    left: 25%;
+    right: 15%;
+    bottom: 25%;
+    left: 25%;
+    z-index: 50;
+    opacity: 6;
+    background-color: black;
+    position: fixed;
+
+    .nav {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        gap: 20%;
+        height: 30px;
+        color: white;
+        margin-bottom: 20px;
+    }
+
+    .top {
+        width: 100%;
+        background-color: #1A1A1C;
+        color: white;
+        display: flex;
+        padding: 10px;
+        align-items: center;
+        column-gap: 30px;
+
+        img {
+            width: 50px;
+            height: 45px;
         }
     }
 

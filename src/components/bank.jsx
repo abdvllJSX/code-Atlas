@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
+import gsap from 'gsap'
+import { TweenLite, Power3 } from "gsap/gsap-core";
 import "./main/hero.scss";
 
-export default function Bank({ item, index, darkmode, handleClick, on, toggeleOff }) {
+export default function Bank({ item, index, darkmode, handleClick, on, toggeleOff,  }) {
     useEffect(() => {
         if (on) {
             document.body.classList.add("disable-scroll");
@@ -10,6 +12,17 @@ export default function Bank({ item, index, darkmode, handleClick, on, toggeleOf
         }
     }, [on]);
 
+    useEffect(() => {
+        console.log("i am exhausted")
+        TweenLite.to([".dark-bank-info", ".bank-info"], {
+            duration: 3,
+            y: -20,
+            opacity: 1,
+            ease: Power3.easeInOut,
+                    
+        })
+    }, [handleClick])
+
     return (
         <div className="wapper">
             <div
@@ -17,7 +30,7 @@ export default function Bank({ item, index, darkmode, handleClick, on, toggeleOf
                 style={
                     darkmode
                         ? { backgroundColor: "#1A1A1C" }
-                        : { backgroundColor: "#F9F9F9" }
+                        : { backgroundColor: "" }
                 }
                 onClick={() => handleClick(item.code)}
             >
@@ -46,13 +59,14 @@ export default function Bank({ item, index, darkmode, handleClick, on, toggeleOf
                 <div
                     className="overlay"
                     style={on ? { visibility: "" } : { visibility: "hidden" }}
+                    onClick={toggeleOff}
                 ></div>
                 <div
-                    className="bank-info"
-                    style={on ? { visibility: "visible" } : { visibility: "hidden" }}
+                    className={darkmode ? "dark-bank-info" : "bank-info"}
+                    // style={on ? { visibility: "visible" } : { visibility: "hidden" }}
                 >
                     <div className="nav">
-                        <svg onClick={toggeleOff} width="30px" height="30px" viewBox="0 0 24 24" fill="none" stroke="#000000"><g id="SVGRepo_bgCarrier"></g><g id="SVGRepo_tracerCarrier"></g><g id="SVGRepo_iconCarrier"> <path d="M16 8L8 16M8.00001 8L16 16" stroke="#000000"></path> </g></svg>
+                        <svg onClick={toggeleOff} width="30px" height="30px" viewBox="0 0 24 24" fill="none" stroke={darkmode ? "#ffffff" : "#000000"}><g id="SVGRepo_bgCarrier"></g><g id="SVGRepo_tracerCarrier"></g><g id="SVGRepo_iconCarrier"> <path d="M16 8L8 16M8.00001 8L16 16" stroke={darkmode ? "#ffffff" : "#000000"}></path> </g></svg>
                         <h4 className="nav-header">Bank information</h4>
                     </div>
                     <div className="top">
@@ -60,9 +74,9 @@ export default function Bank({ item, index, darkmode, handleClick, on, toggeleOf
                         <p className="bank-name">{item.name}</p>
                     </div>
 
-                    <main>
-                        <span>
-                            <h4>Bank-code:</h4>
+                    <main style={darkmode ? {color: "white"} : {color: "black"}}>
+                        <span >
+                            <h4 >Bank-code:</h4>
                             {item.code}
                         </span>
                         <span>
@@ -79,36 +93,3 @@ export default function Bank({ item, index, darkmode, handleClick, on, toggeleOf
         </div>
     );
 }
-
-// import React, { useState } from 'react';
-
-// const MyComponent = () => {
-//   const [items, setItems] = useState([
-//     { id: 1, value: false },
-//     { id: 2, value: false },
-//     { id: 3, value: false },
-//   ]);
-
-//   const handleClick = (itemId) => {
-//     setItems(prevItems => prevItems.map(item => ({
-//       ...item,
-//       value: item.id === itemId,
-//     })));
-//   };
-
-//   return (
-//     <div>
-//       {items.map(item => (
-//         <div
-//           key={item.id}
-//           onClick={() => handleClick(item.id)}
-//           className={item.value ? 'active' : ''}
-//         >
-//           Item {item.id}
-//         </div>
-//       ))}
-//     </div>
-//   );
-// };
-
-// export default MyComponent;
