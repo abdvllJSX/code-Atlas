@@ -52,6 +52,7 @@ body {
         border-radius: 25px;
         background-color: #f9f9f9;
         margin: 80px 0;
+        
         @include mobile {
             width: 80%;
             margin-top: 50px;
