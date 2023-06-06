@@ -1,18 +1,10 @@
 import React from "react";
 import './loader.scss'
-import imagesLoaded from 'imagesLoaded'
 import Main from "../main/hero";
 import Bank from "../bank";
 import gsap from 'gsap'
 
 export default function Pageloader() {
-
-    const imgload = imagesLoaded(<Bank />, <Main />)
-
-    imgload.on('done', instance => {
-
-        console.log("hey")
-    })
     setTimeout(() => {
         gsap.to(".loader-logo", {
             scale: 0,
