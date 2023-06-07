@@ -5,11 +5,12 @@ function App() {
   const [loading, setLoading] = useState(true)
   return (
     <>
-      {loading ?
+      {/* {loading ?
         <Pageloader
           setLoading={setLoading}
         /> :
-        <Main />}
+        <Main />} */}
+        <Pageloader />
     </>
   )
 }
