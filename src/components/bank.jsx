@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
-import gsap from 'gsap'
-import { TweenLite, Power3 } from "gsap/gsap-core";
+import { motion } from "framer-motion";
 import "./main/hero.scss";
 
-export default function Bank({ item, index, darkmode, handleClick, on, toggeleOff,  }) {
+export default function Bank({ item, index, darkmode, handleClick, on, toggeleOff, }) {
     useEffect(() => {
         if (on) {
             document.body.classList.add("disable-scroll");
@@ -12,17 +11,29 @@ export default function Bank({ item, index, darkmode, handleClick, on, toggeleOf
         }
     }, [on]);
 
-    useEffect(() => {
-        console.log("i am exhausted")
-        TweenLite.to([".dark-bank-info", ".bank-info"], {
-            duration: 3,
-            y: -20,
-            opacity: 1,
-            ease: Power3.easeInOut,
-                    
-        })
-    }, [handleClick])
+    const animateInfo = {
+        hidden: {
+            opacity: 0,
+            y: 200,
+        },
 
+        show: {
+            opacity: 1,
+            y: 0,
+            transition: {
+                ease: [.6, .01, -.05, .95],
+                duration: 10.0
+            }
+        },
+        exit: {
+            opacity: 0,
+            y: -200,
+            transition: {
+                ease: 'easeInOut',
+                duration: 0.8
+            }
+        }
+    }
     return (
         <div className="wapper">
             <div
@@ -61,10 +72,15 @@ export default function Bank({ item, index, darkmode, handleClick, on, toggeleOf
                     style={on ? { visibility: "" } : { visibility: "hidden" }}
                     onClick={toggeleOff}
                 ></div>
-                <div
+                <motion.div
                     className={darkmode ? "dark-bank-info" : "bank-info"}
                     // style={on ? { visibility: "visible" } : { visibility: "hidden" }}
+                    variants={animateInfo}
+                    initial="initial"
+                    animate="show"
+                    exit="exit"
                 >
+
                     <div className="nav">
                         <svg onClick={toggeleOff} width="30px" height="30px" viewBox="0 0 24 24" fill="none" stroke={darkmode ? "#ffffff" : "#000000"}><g id="SVGRepo_bgCarrier"></g><g id="SVGRepo_tracerCarrier"></g><g id="SVGRepo_iconCarrier"> <path d="M16 8L8 16M8.00001 8L16 16" stroke={darkmode ? "#ffffff" : "#000000"}></path> </g></svg>
                         <h4 className="nav-header">Bank information</h4>
@@ -74,7 +90,7 @@ export default function Bank({ item, index, darkmode, handleClick, on, toggeleOf
                         <p className="bank-name">{item.name}</p>
                     </div>
 
-                    <main style={darkmode ? {color: "white"} : {color: "black"}}>
+                    <main style={darkmode ? { color: "white" } : { color: "black" }}>
                         <span >
                             <h4 >Bank-code:</h4>
                             {item.code}
@@ -88,7 +104,7 @@ export default function Bank({ item, index, darkmode, handleClick, on, toggeleOf
                             {item.ussd}
                         </span>
                     </main>
-                </div>
+                </motion.div>
             </div>
         </div>
     );

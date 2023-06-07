@@ -1,21 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import './loader.scss'
 import Main from "../main/hero";
 import Bank from "../bank";
-import gsap from 'gsap'
+import { gsap } from 'gsap'
 
-export default function Pageloader() {
-    setTimeout(() => {
-        gsap.to(".loader-logo", {
-            scale: 0,
-        })
-        gsap.to(".blinder", {
-            scaleY: 0,
-            stagger: .3,
-        })
-    }, 5000)
+export default function Pageloader({ setLoading }) {
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setLoading(false)
+        }, 5000)
+        return () => clearTimeout(timer)
+    }, [])
+
     return (
-        <div className="loader block">
+        <div className="loader">
             <div className="blinder-container">
                 <div className="blinder"></div>
                 <div className="blinder"></div>
