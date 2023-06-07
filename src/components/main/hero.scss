@@ -179,8 +179,8 @@ body {
     margin: 0 auto;
 
     @include mobile {
-        padding-left: 7%;
-        padding-right: 7%;
+        padding-left: 5%;
+        padding-right: 5%;
     }
 
     .not-found-container {
@@ -364,6 +364,16 @@ body.disable-scroll {
     opacity: 6;
     background-color: black;
     position: fixed;
+
+    @include mobile {
+        padding: 20px;
+        left: 0;
+        right: 0;
+        bottom: 33%;
+        top: 33%;
+        width: 80%;
+        margin: 0 10%;
+    }
 
     .nav {
         display: flex;
