@@ -8,6 +8,13 @@ export default function Pageloader({ setLoading }) {
 
     useEffect(() => {
         const timer = setTimeout(() => {
+            gsap.to(".loader-logo", {
+                scale: 0,
+            })
+            gsap.to(".blinder", {
+                scaleY: 0,
+                stagger: .3,
+            })
             setLoading(false)
         }, 5000)
         return () => clearTimeout(timer)
