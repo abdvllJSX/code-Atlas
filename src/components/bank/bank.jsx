@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import "./main/hero.scss";
-
+import "./bank.scss";
+import "../main/hero"
 export default function Bank({ item, index, darkmode, handleClick, on, toggeleOff, }) {
     useEffect(() => {
         if (on) {

@@ -6,12 +6,12 @@ import './loading.scss'
 export default function Loader({darkmode}) {
     useEffect(() => {
         gsap.to(".ball", {
-            x: 1000,
+            x: 1200,
             opacity: 0,
             duration: 2,
             repeat: -1,
             stagger: {
-                amount: 1,
+                amount: .5,
                 from: 'start',
                 ease: Power3.easeInOut
             }

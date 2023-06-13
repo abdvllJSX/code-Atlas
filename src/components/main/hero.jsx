@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import "./hero.scss"
-import Bank from '../bank';
+import Bank from '../bank/bank';
 import Loader from './loading';
 export default function Main() {
     const [value, setvalue] = useState("");
@@ -9,13 +9,7 @@ export default function Main() {
     const [button, setButton] = useState(false);
     const [loading, setLoading] = useState(false)
     
-    useEffect(() => {
-        if (darkmode) {
-            document.body.classList.add('dark-mode');
-        } else {
-            document.body.classList.remove('dark-mode');
-        }
-    }, [darkmode]);
+    
 
 
     const toggleButton = () => {
@@ -80,6 +74,7 @@ export default function Main() {
             ...item,
             on: false
         })))
+        console.log("hi")
     }
     return (
 
