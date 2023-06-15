@@ -8,8 +8,11 @@ export default function Main() {
     const [darkmode, setDarkmode] = useState(null);
     const [button, setButton] = useState(false);
     const [loading, setLoading] = useState(false)
-    
-    
+
+
+    useEffect(() => {
+        document.body.style.backgroundColor = darkmode ? 'black' : 'white';
+    }, [darkmode]);
 
 
     const toggleButton = () => {
@@ -105,13 +108,13 @@ export default function Main() {
             {loading ? <div className="banky">
                 <div className={button ? "contain-open" : "container-2"}>
                     {main.length === 0 ?
-                        <div className="not-found-container">
+                        <div className="not-found-container" style={darkmode ? { color: '#ffffff' } : { color: '#000000' }}>
                             <h3>this bank is not available at this time please check back</h3>
                         </div>
                         : main}
                 </div>
                 <div className="button-container">
-                    <button className={darkmode ? "toggle-container-dark" : "toggle-container-light"} onClick={toggleButton} style={main.length === 0 ? { display: "none" } : { display: "block" }}>{button ? "show less" : "show more"}</button>
+                    <button className={darkmode ? "toggle-container-dark" : "toggle-container-light"} onClick={toggleButton} style={main.length <= 2 ? { display: "none" } : { display: "block" }}>{button ? "show less" : "show more"}</button>
                 </div>
             </div> : <Loader
                 darkmode={darkmode}

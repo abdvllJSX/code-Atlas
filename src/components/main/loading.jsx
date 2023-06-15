@@ -11,8 +11,7 @@ export default function Loader({darkmode}) {
             duration: 2,
             repeat: -1,
             stagger: {
-                amount: .5,
-                from: 'start',
+                amount: .6,
                 ease: Power3.easeInOut
             }
         })
@@ -23,7 +22,8 @@ export default function Loader({darkmode}) {
             <div className={darkmode ? "darkball" : "ball"}></div>
             <div className={darkmode ? "darkball" : "ball"}></div>
             <div className={darkmode ? "darkball" : "ball"}></div>
-
+            <div className={darkmode ? "darkball" : "ball"}></div>
+            <div className={darkmode ? "darkball" : "ball"}></div>
         </div>
     );
 }
