@@ -26,10 +26,9 @@ export default function Bank({ item, index, darkmode, handleClick, on, toggeleOf
         },
         exit: {
             opacity: 0,
-            y: -200,
+            y: -500,
             transition: {
-                ease: "easeInOut",
-                duration: 1,
+                duration: .5,
             },
         },
     };
@@ -58,7 +57,6 @@ export default function Bank({ item, index, darkmode, handleClick, on, toggeleOf
             </div>
             <motion.div
                 className="container"
-                style={on ? { visibility: "visible" } : { visibility: "hidden" }}
             >
                 <div
                     className="overlay"
