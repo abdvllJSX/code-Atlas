@@ -26,7 +26,7 @@ export default function Bank({ item, index, darkmode, handleClick, on, toggeleOf
         },
         exit: {
             visibility: "none",
-            y: -200,
+            y: -1000,
             transition: {
                 duration: 1,
             },
