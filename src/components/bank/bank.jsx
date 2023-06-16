@@ -1,44 +1,27 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 import "./bank.scss";
 import "../main/hero";
 
-export default function Bank({ item, index, darkmode, handleClick, on, toggeleOff }) {
+// Bank component
+const Bank = ({ item, index, darkmode, handleClick, on, toggeleOff }) => {
     useEffect(() => {
-        if (on) {
-            document.body.classList.add("disable-scroll");
-        } else {
-            document.body.classList.remove("disable-scroll");
-        }
+        // Toggle body scroll based on the 'on' prop
+        document.body.classList.toggle("disable-scroll", on);
     }, [on]);
 
+    // Animation variants for bank info container
     const animateInfo = {
-        hidden: {
-            opacity: 0,
-            y: 200,
-        },
-        show: {
-            opacity: 1,
-            y: 0,
-            transition: {
-                duration: 1.0,
-            },
-        },
-        exit: {
-            opacity: 0,
-            y: -200,
-            transition: {
-                ease: "easeInOut",
-                duration: 1,
-            },
-        },
+        hidden: { opacity: 0, y: 200 },
+        show: { opacity: 1, y: 0, transition: { duration: 1.0 } },
+        exit: { opacity: 0, y: -200, transition: { ease: "easeInOut", duration: 1 } },
     };
 
     return (
         <div className="wapper">
             <div
                 className={`bank bank${index}`}
-                style={darkmode ? { backgroundColor: "#1A1A1C" } : { backgroundColor: "" }}
+                style={darkmode ? { backgroundColor: "#1A1A1C" } : null}
                 onClick={() => handleClick(item.code)}
             >
                 <div className="right">
@@ -114,4 +97,6 @@ export default function Bank({ item, index, darkmode, handleClick, on, toggeleOf
             </motion.div>
         </div>
     );
-}
+};
+
+export default Bank;
