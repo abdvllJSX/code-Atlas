@@ -57,9 +57,9 @@ body.disable-scroll {
 
 .bank-info {
   padding: 30px;
-  width: 400px;
-  left: 25%;
-  right: 15%;
+  width: 350px;
+  margin-left: 20%;
+  margin-right: 30%;
   bottom: 20%;
   z-index: 50;
   background-color: white;
@@ -70,6 +70,7 @@ body.disable-scroll {
     left: 0;
     right: 0;
     bottom: 30%;
+    font-size: 14px;
     top: 30%;
     width: 88%;
     margin: 0 6%;
@@ -111,9 +112,9 @@ body.disable-scroll {
 
 .dark-bank-info {
   padding: 30px;
-  width: 400px;
-  left: 25%;
-  right: 15%;
+  width: 350px;
+  margin-left: 20%;
+  margin-right: 30%;
   bottom: 25%;
   z-index: 50;
   opacity: 6;

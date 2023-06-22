@@ -23,7 +23,6 @@ const Main = () => {
     };
 
     useEffect(() => {
-        setLoading(true);
         fetch("https://nigerianbanks.xyz")
             .then(res => res.json())
             .then(result => {
@@ -33,6 +32,8 @@ const Main = () => {
                 }));
                 setData(updatedData);
             });
+        setLoading(true);
+
     }, []);
 
     const handleChange = event => {
@@ -122,7 +123,7 @@ const Main = () => {
             {loading ? (
                 <div className="banky">
                     <div className={button ? "contain-open" : "container-2"}>
-                        {main.length === 0 ? (
+                        {  main.length === 0 ? (
                             <div className="not-found-container" style={darkmode ? { color: '#ffffff' } : { color: '#000000' }}>
                                 <h3>This bank is not available at this time. Please check back later.</h3>
                             </div>
@@ -131,7 +132,7 @@ const Main = () => {
                         )}
                     </div>
                     <div className="button-container">
-                        {main.length > 2 && (
+                        {main.length > 3 && (
                             <button
                                 className={darkmode ? "toggle-container-dark" : "toggle-container-light"}
                                 onClick={toggleButton}
