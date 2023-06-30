@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import "./hero.scss"
+import "./hero.scss";
 import Bank from '../bank/bank';
 import Loader from './loading';
 
@@ -8,7 +8,7 @@ const Main = () => {
     const [data, setData] = useState([]);
     const [darkmode, setDarkmode] = useState(false);
     const [button, setButton] = useState(false);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true); // Set initial loading state to true
 
     useEffect(() => {
         document.body.style.backgroundColor = darkmode ? 'black' : 'white';
@@ -31,9 +31,12 @@ const Main = () => {
                     on: false
                 }));
                 setData(updatedData);
+                setLoading(false); // Update loading state once data is fetched
+            })
+            .catch(error => {
+                console.error("Error fetching data:", error);
+                setLoading(false); // Update loading state if there is an error
             });
-        setLoading(true);
-
     }, []);
 
     const handleChange = event => {
@@ -121,9 +124,11 @@ const Main = () => {
                 />
             </div>
             {loading ? (
+                <Loader darkmode={darkmode} />
+            ) : (
                 <div className="banky">
                     <div className={button ? "contain-open" : "container-2"}>
-                        {  main.length === 0 ? (
+                        {main.length === 0 ? (
                             <div className="not-found-container" style={darkmode ? { color: '#ffffff' } : { color: '#000000' }}>
                                 <h3>This bank is not available at this time. Please check back later.</h3>
                             </div>
@@ -142,8 +147,6 @@ const Main = () => {
                         )}
                     </div>
                 </div>
-            ) : (
-                <Loader darkmode={darkmode} />
             )}
         </div>
     );
