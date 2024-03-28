@@ -7,7 +7,7 @@ export default function Pageloader({ setLoading }) {
         const timer = setTimeout(() => {
             // Animate the loader elements using gsap
             gsap.to([".loader-logo", ], {
-                scale: 0,
+                visibility: "hidden",
                 duration: 1, // Set the duration of the animation
                 onComplete: () => {
                     // Animation completed, set loading state to false

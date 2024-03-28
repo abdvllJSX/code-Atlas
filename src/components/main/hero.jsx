@@ -1,14 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,  useRef} from 'react';
 import "./hero.scss";
 import Bank from '../bank/bank';
 import Loader from './loading';
 
 const Main = () => {
+
+    const inputContainer = useRef()
     const [value, setValue] = useState("");
     const [data, setData] = useState([]);
     const [darkmode, setDarkmode] = useState(false);
     const [button, setButton] = useState(false);
     const [loading, setLoading] = useState(true); // Set initial loading state to true
+
 
     useEffect(() => {
         document.body.style.backgroundColor = darkmode ? 'black' : 'white';
@@ -34,7 +37,6 @@ const Main = () => {
                 setLoading(false); // Update loading state once data is fetched
             })
             .catch(error => {
-                console.error("Error fetching data:", error);
                 setLoading(false); // Update loading state if there is an error
             });
     }, []);
@@ -94,7 +96,7 @@ const Main = () => {
             <h3 className="bank-header" style={darkmode ? { color: '#ffffff' } : { color: '#000000' }}>
                 We generate Nigerian banks codes!
             </h3>
-            <div className="input">
+            <div className="input" ref={inputContainer}>
                 <svg
                     fill="#000000"
                     className='svg'
